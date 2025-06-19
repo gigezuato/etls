@@ -1,0 +1,6 @@
+id,data_venda,produto,categoria,preco_unitario,quantidade
+1,2025-06-01,Camiseta,Vestuário,49.9,2
+2,2025-06-02,Calça Jeans,Vestuário,120.0,1
+3,2025-06-03,Tênis,Calçados,250.0,1
+4,2025-06-03,Meia,Acessórios,10.0,5
+5,2025-06-04,Boné,Acessórios,35.0,1
