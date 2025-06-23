@@ -1,0 +1,6 @@
+id,nome,idade,cidade,estado,total_compras,ultima_compra
+1,Ana Paula,28.0,São Paulo,SP,3500.0,2025-05-15
+2,Carlos Eduardo,35.0,Rio de Janeiro,RJ,1500.0,2025-04-10
+3,Juliana Reis,,Belo Horizonte,MG,900.0,2025-03-21
+4,Pedro Souza,42.0,Curitiba,PR,4800.0,2025-06-01
+5,Fernanda Lima,30.0,Salvador,BA,1200.0,2025-04-28
