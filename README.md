@@ -6,7 +6,7 @@ Each ETL solves a different data processing task, from simple file transformatio
 ## 📌 Objective
 
 To practice and showcase different types of ETL projects using real or simulated datasets.  
-The source and destination formats may vary across projects — for example, from CSV to Excel, JSON to Database, API to DataFrame, etc.
+The source and destination formats may vary across projects, for example, from CSV to Excel, JSON to Database, API to DataFrame, etc.
 
 This repository will grow over time with ETLs of different complexity levels and data sources.
 
