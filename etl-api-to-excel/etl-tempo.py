@@ -17,23 +17,26 @@ def extrair(url):
 def obtendo_dataframe(dados):
     # Renomeando as colunas
     df = pd.DataFrame({
-        'Horários': dados['time'],
-        'Temperatura (°C)': dados['temperature_2m'],
-        'Umidade relativa do ar (%)': dados['relative_humidity_2m'],
-        'Velocidade do vento (km/h)': dados['windspeed_10m']
+        'horários': dados['time'],
+        'temperatura (°C)': dados['temperature_2m'],
+        'umidade relativa do ar (%)': dados['relative_humidity_2m'],
+        'velocidade do vento (km/h)': dados['windspeed_10m']
     })
-    df.set_index('Horários', inplace=True)  # Os horários serão os índices
-    return df
 
+    df.set_index('horários', inplace=True)  # Os horários serão os índices
 
-# Transformação
-def transformar(dados):
-    df = obtendo_dataframe(dados)
     # Transformando Horários para tipo datetime
     df.index = pd.to_datetime(df.index)
+    df.index = df.index.tz_localize('UTC').tz_convert('America/Sao_Paulo')  # Convertendo para horário local
+
+    # Obter dados de uma semana, contando a partir do dia atual
+    hoje = pd.Timestamp.now(tz='America/Sao_Paulo')
+    fim = hoje + pd.Timedelta(days=7)  # Uma semana
+    df = df.loc[(df.index >= hoje) & (df.index <= fim)]
     return df
+
 
 url = "https://api.open-meteo.com/v1/forecast?latitude=-23.55&longitude=-46.63&hourly=temperature_2m,relative_humidity_2m,windspeed_10m"
 dados = extrair(url)
-df = transformar(dados)
+df = obtendo_dataframe(dados)
 print(df)
