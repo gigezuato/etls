@@ -30,9 +30,9 @@ def obtendo_dataframe(dados):
     df.index = df.index.tz_localize('UTC').tz_convert('America/Sao_Paulo')  # Convertendo para horário local
 
     # Obter dados de uma semana, contando a partir do dia atual
-    hoje = pd.Timestamp.now(tz='America/Sao_Paulo')
-    fim = hoje + pd.Timedelta(days=7)  # Uma semana
-    df = df.loc[(df.index >= hoje) & (df.index <= fim)]
+    hoje = pd.Timestamp.now(tz='America/Sao_Paulo').normalize()
+    fim = hoje + pd.Timedelta(days=7)
+    df = df.loc[(df.index >= hoje) & (df.index < fim)]
     return df
 
 
