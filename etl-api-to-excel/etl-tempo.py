@@ -4,6 +4,28 @@ import numpy as np
 import os
 from time import sleep
 
+'''
+ETL - Previsão do Tempo com Classificação e Exportação
+
+Este script realiza um processo ETL (Extract, Transform, Load) a partir de dados meteorológicos fornecidos por uma API pública (Open-Meteo).
+
+As etapas são:
+
+1. Extração dos dados da API contendo previsões horárias para os próximos 7 dias na cidade de São Paulo.
+2. Transformação dos dados, incluindo:
+   - Conversão dos horários para o fuso local (America/Sao_Paulo).
+   - Filtragem para manter apenas os dados da semana atual.
+   - Classificação do clima em três categorias com base na temperatura:
+        Frio → temperatura < 15°C  
+        Ameno → entre 15°C e 25°C  
+        Quente → > 25°C
+   - Classificação do período do dia com base na hora:
+        Manhã (6h-12h), Tarde (12h-18h), Noite (18h-23h), e Madrugada (restante).
+   - Separação da coluna de horário em duas colunas: `data` (dia) e `hora` (hora do dia).
+   - Reorganização das colunas para facilitar a leitura.
+3. Carregamento dos dados transformados em um arquivo Excel chamado `previsao_tempo.xlsx`, salvo em um diretório definido pelo usuário via terminal.
+'''
+
 
 # Extração
 def extrair(url):
