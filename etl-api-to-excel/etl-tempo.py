@@ -42,13 +42,13 @@ def extrair(url):
 def obtendo_dataframe(dados):
     # Renomeando as colunas
     df = pd.DataFrame({
-        'horários': dados['time'],
+        'data_hora': dados['time'],
         'temperatura': dados['temperature_2m'],
         'umidade_relativa_ar': dados['relative_humidity_2m'],
         'velocidade_vento': dados['windspeed_10m']
     })
 
-    df.set_index('horários', inplace=True)  # Os horários serão os índices
+    df.set_index('data_hora', inplace=True)  # Os horários serão os índices
 
     # Transformando Horários para tipo datetime
     df.index = pd.to_datetime(df.index)
@@ -110,7 +110,7 @@ def exportar(arquivo, caminho, df):
     try:
         df = df.copy()
         df.index = df.index.tz_convert(None)
-        df.to_excel(os.path.join(caminho, arquivo), index=False)
+        df.to_excel(os.path.join(caminho, arquivo), index=True)
     except Exception as e:
         print(f'Não foi possível exportar o arquivo! Erro: {e}')
     else:
